@@ -1,0 +1,52 @@
+syntax = "proto3";
+ 
+package proto;
+ 
+option go_package="go-grpc-crud-api/proto";
+ 
+ 
+message Movie {
+   optional string id = 1;
+   optional string title = 2;
+   optional string genre = 3;
+}
+ 
+message CreateMovieRequest {
+   optional Movie movie = 1;
+}
+message CreateMovieResponse {
+   optional Movie movie = 1;
+}
+message ReadMovieRequest{
+   optional string id = 1;
+}
+message ReadMovieResponse{
+   optional Movie movie = 1;
+}
+message ReadMoviesRequest{
+ 
+}
+message ReadMoviesResponse{
+   repeated Movie movies = 1;
+}
+message UpdateMovieRequest{
+   optional Movie movie = 1;
+}
+message UpdateMovieResponse{
+   optional Movie movie = 1;
+}
+message DeleteMovieRequest{
+   optional string id = 1;
+}
+message DeleteMovieResponse{
+   optional bool success = 1;
+}
+ 
+ 
+service MovieService {
+   rpc CreateMovie(CreateMovieRequest) returns (CreateMovieResponse) {}
+   rpc GetMovie(ReadMovieRequest) returns (ReadMovieResponse) {}
+   rpc GetMovies(ReadMoviesRequest) returns (ReadMoviesResponse) {}
+   rpc UpdateMovie(UpdateMovieRequest) returns (UpdateMovieResponse) {}
+   rpc DeleteMovie(DeleteMovieRequest) returns (DeleteMovieResponse) {}
+}
